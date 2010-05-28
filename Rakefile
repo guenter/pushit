@@ -5,12 +5,14 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "pushit"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Send push notifications to mobile devices.}
+    gem.description = %Q{Send push notifications to mobile devices. Designed to be device-agnostic. Currently supports Apple push notifications.}
     gem.email = "tobi.knaup@gmail.com"
     gem.homepage = "http://github.com/guenter/pushit"
     gem.authors = ["Tobi Knaup"]
+    gem.add_dependency "activesupport", ">= 2.3"
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.files = FileList["[A-Z]*", "{bin,generators,lib,spec}/**/*"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

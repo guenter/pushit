@@ -1,6 +1,37 @@
 = pushit
 
-Description goes here.
+Pushit sends push notifications to mobile devices.
+
+
+== Why another gem?
+
+There are some gems that let you do push notifications but I wasn't fully satisfied with them.
+
+* http://github.com/samsoffes/apple_push_notification works as an AR plugin, a mixin to any object, or by calling a class method. It doesn't offer a DSL and has no tests.
+* http://github.com/PRX/apn_on_rails is based on Sam's plugin and seems to have good test coverage. However it is an AR plugin and stores every notification in the database which seems unnecessary.
+* http://github.com/thegeekbird/Apns4r has no tests but looks mature otherwise. No DSL.
+
+The main design goals of this gem are:
+
+* Easy to use DSL
+* Not an AR plugin
+* Extensible architecture to support other mobile devices.
+
+
+== How to use
+
+  Pushit.config.apple_certificate = File.read('your_apn_cert.pem')
+  Pushit.config.environment = :production	# The default is :development, which will use the sandbox servers.
+  
+  Pushit.deliver do
+    device_type :iPhone
+    device_token '<42234223 42234223 42234223 42234223 42234223 42234223 42234223 42234223>'
+    alert '3 new messages!'
+    badge 3
+    sound 'foo.aiff'
+    custom_data {'foo' => 'bar'}
+  end
+
 
 == Note on Patches/Pull Requests
  
