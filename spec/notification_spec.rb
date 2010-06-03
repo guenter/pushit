@@ -11,11 +11,6 @@ describe "Notification" do
     notification.send(name).should == value
   end
   
-  it "should convert the badge to an integer" do
-    notification.badge = '3'
-    notification.badge.should == 3
-  end
-  
   it "should convert the device type to a symbol" do
     notification.device_type = 'iPhone'
     notification.device_type.should == :iPhone

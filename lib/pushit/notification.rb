@@ -26,10 +26,6 @@ module Pushit
     def initialize(*args)
       @alert, @sound, @badge, @device_token, @device_type, @custom_data = args
     end
-    
-    def badge=(badge)
-      @badge = badge.to_i
-    end
   
     def device_type=(device_type)
       @device_type = device_type.to_sym

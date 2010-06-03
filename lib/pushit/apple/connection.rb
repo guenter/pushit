@@ -55,10 +55,40 @@ module Pushit
       
       def notification_to_json(notification)
         aps = {}
-        %w(alert sound badge).each do |key|
-          value = notification.send(key)
-          aps[key] = value unless value.nil?
+        
+        # Dictionary-style alert
+        if notification.alert.is_a?(Hash)
+          alert = {}
+          
+          # Only include valid keys
+          body, action_loc_key, loc_key, loc_args = notification.alert.values_at('body', 'action-loc-key', 'loc-key', 'loc-args')
+          
+          # Convert to the expected data type
+          alert['body']     = body.to_s unless body.nil?        # Must be a string
+          alert['loc-key']  = loc_key.to_s unless loc_key.nil?  # Must be a string
+                    
+          # Must be an array of strings
+          if loc_args.is_a?(Array)
+            loc_args.map!(&:to_s)
+            alert['loc-args'] = loc_args
+          end
+          
+          # Can be null or a string, so check if the hash has the key set
+          if notification.alert.has_key?('action-loc-key')
+            action_loc_key = action_loc_key.to_s unless action_loc_key.nil?
+            alert['action-loc-key'] = action_loc_key
+          end
+          
+          aps['alert'] = alert
+        elsif notification.alert != nil
+          aps['alert'] = notification.alert.to_s
         end
+        
+        aps['sound'] = notification.sound.to_s unless notification.sound.nil?
+        aps['badge'] = notification.badge.to_i unless notification.badge.nil?
+        
+        raise Pushit::InvalidMessage, 'The "aps" dictionary must have at least one key' if aps.empty?
+        
         hash = {'aps' => aps}
         hash.merge!(notification.custom_data) if notification.custom_data.is_a?(Hash)
         hash.to_json
