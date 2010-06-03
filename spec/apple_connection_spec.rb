@@ -96,10 +96,4 @@ describe "Apple Connection" do
     
     connection.deliver(mock_notification).should be_true
   end
-  
-  it "should raise an exception if the aps dictionary is empty" do
-    lambda {
-      connection.deliver(mock_notification)
-    }.should raise_error('The "aps" dictionary must have at least one key')
-  end
 end

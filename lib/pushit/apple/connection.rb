@@ -87,8 +87,6 @@ module Pushit
         aps['sound'] = notification.sound.to_s unless notification.sound.nil?
         aps['badge'] = notification.badge.to_i unless notification.badge.nil?
         
-        raise Pushit::InvalidMessage, 'The "aps" dictionary must have at least one key' if aps.empty?
-        
         hash = {'aps' => aps}
         hash.merge!(notification.custom_data) if notification.custom_data.is_a?(Hash)
         hash.to_json
