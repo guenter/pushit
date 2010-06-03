@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pushit}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tobi Knaup"]
-  s.date = %q{2010-05-28}
+  s.date = %q{2010-06-03}
   s.description = %q{Send push notifications to mobile devices. Designed to be device-agnostic. Currently supports Apple push notifications.}
   s.email = %q{tobi.knaup@gmail.com}
   s.extra_rdoc_files = [
