@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pushit}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tobi Knaup"]
@@ -23,9 +23,11 @@ Gem::Specification.new do |s|
      "VERSION",
      "lib/pushit.rb",
      "lib/pushit/apple/connection.rb",
+     "lib/pushit/apple/feedback_service.rb",
      "lib/pushit/config.rb",
      "lib/pushit/notification.rb",
      "spec/apple_connection_spec.rb",
+     "spec/apple_feedback_service_spec.rb",
      "spec/fixtures/apple_cert.pem",
      "spec/notification_spec.rb",
      "spec/pushit_spec.rb",
@@ -39,6 +41,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Send push notifications to mobile devices.}
   s.test_files = [
     "spec/apple_connection_spec.rb",
+     "spec/apple_feedback_service_spec.rb",
      "spec/notification_spec.rb",
      "spec/pushit_spec.rb",
      "spec/spec_helper.rb"
