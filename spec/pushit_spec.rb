@@ -8,29 +8,29 @@ describe "Pushit" do
   
   it "should raise an exception for unsupported devices" do
     lambda {
-      Pushit.deliver { device_type :fooPhone }
+      Pushit.deliver { |n| n.device_type :fooPhone }
     }.should raise_error("fooPhone is not supported")
   end
   
   it "should raise an exception if device token is invalid or not given" do
     lambda {
-      Pushit.deliver { device_type :iPhone }
+      Pushit.deliver { |n| n.device_type :iPhone }
     }.should raise_error("Device token must be set")
     
     lambda {
-      Pushit.deliver {
-        device_type :iPhone
-        device_token 'abcd'
+      Pushit.deliver { |n|
+        n.device_type :iPhone
+        n.device_token 'abcd'
       }
     }.should raise_error("Device token must be 32 bytes long")
   end
   
   it "should raise an exception if payload is too big" do
     lambda {
-      Pushit.deliver {
-        alert 'A' * 237
-        device_type :iPhone
-        device_token '<42234223 42234223 42234223 42234223 42234223 42234223 42234223 42234223>'
+      Pushit.deliver { |n|
+        n.alert 'A' * 237
+        n.device_type :iPhone
+        n.device_token '<42234223 42234223 42234223 42234223 42234223 42234223 42234223 42234223>'
       }
     }.should raise_error("Payload is bigger than 256 bytes")
   end

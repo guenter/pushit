@@ -89,7 +89,7 @@ module Pushit
         
         hash = {'aps' => aps}
         hash.merge!(notification.custom_data) if notification.custom_data.is_a?(Hash)
-        hash.to_json
+        ActiveSupport::JSON.encode(hash)
       end
       
     end

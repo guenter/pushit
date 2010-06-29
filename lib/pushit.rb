@@ -16,7 +16,7 @@ module Pushit
     
     def deliver(&block)
       notification = Pushit::Notification.new
-      notification.instance_eval(&block)
+      yield notification
       connection_for(notification).deliver(notification)
     end
   

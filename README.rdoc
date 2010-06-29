@@ -23,13 +23,13 @@ The main design goals of this gem are:
   Pushit.config.apple_certificate = File.read('your_apn_cert.pem')
   Pushit.config.environment = :production	# The default is :development, which will use the sandbox servers.
   
-  Pushit.deliver do
-    device_type :iPhone
-    device_token '<42234223 42234223 42234223 42234223 42234223 42234223 42234223 42234223>'
-    alert '3 new messages!'
-    badge 3
-    sound 'foo.aiff'
-    custom_data {'foo' => 'bar'}
+  Pushit.deliver do |n|
+    n.device_type :iPhone
+    n.device_token '<42234223 42234223 42234223 42234223 42234223 42234223 42234223 42234223>'
+    n.alert '3 new messages!'
+    n.badge 3
+    n.sound 'foo.aiff'
+    n.custom_data {'foo' => 'bar'}
   end
 
 
